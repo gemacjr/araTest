@@ -1,28 +1,47 @@
-# Angular2test
+ I decrypted thecyhpir with this:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+/**
+ * Created by edmac on 5/9/17.
+ */
+public class CeasarDecrypt {
 
-## Development server
+    public static void main(String[] args){
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+        String message = "Vefwoluibahgvul Xbpggpmf Vehglwht - npaobi kva jvt / yksvdl7921";
+        String dMessage = "";
+        int key = 1;
+        char ch;
 
-## Code scaffolding
+        do {
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+            for(int i = 0; i < message.length(); i++){
+                ch = message.charAt(i);
 
-## Build
+                if(ch >= 'a' && ch <= 'z'){
+                    ch = (char)(ch - key);
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+                    if(ch < 'a'){
+                        ch = (char)(ch + 'z' - 'a' + 1);
+                    }
+                    dMessage += ch;
+                }else if(ch >= 'A' && ch <= 'Z'){
+                    ch = (char)(ch - key);
 
-## Running unit tests
+                    if(ch < 'A'){
+                        ch = (char)(ch + 'Z' - 'A' +1);
+                    }
+                    dMessage += ch;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+                }else {
+                    dMessage += ch;
+                }
+            }
 
-## Running end-to-end tests
+            System.out.println("Decrypted Message = " + dMessage + "\n");
+            dMessage = "";
+            key++;
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+        }while(key < 27);
+    }
+}
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
